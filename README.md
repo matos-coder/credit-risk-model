@@ -8,6 +8,15 @@ Credit scoring is the process of assigning a quantitative measure to a potential
 
 ---
 
+## What is Credit Risk?
+Credit risk is the possibility that a borrower or counterparty will fail to meet their financial obligations as agreed. For example, when a bank provides a loan to an individual or a company, the bank faces the risk that the borrower may not repay the loan in full or on time. This risk can lead to financial loss for the lender.
+
+## Credit Risk and the Basel II Accord
+The Basel II Accord is a set of international banking regulations developed by the Basel Committee on Banking Supervision. It emphasizes effective risk management and requires financial institutions to hold capital in proportion to their risk exposure.
+
+
+---
+
 ## Key Questions and Explanations
 
 ### 1. Basel II Accord’s Influence on Model Requirements
@@ -52,7 +61,7 @@ In regulated environments like banking, selecting the right model involves balan
 | **Maintenance**        | Simple to update                                         | Resource-intensive                              |
 | **Risk**               | Lower; easier governance                                 | Higher; opaque decision-making                 |
 
-#### Recommendations:
+#### Recommendations(my choice):
 1. **Baseline Model**: Start with a logistic regression model, enhanced with Weight-of-Evidence (WoE), to satisfy Basel II requirements for interpretability and compliance.
 2. **Advanced Models**: Experiment with gradient boosting or similar methods. Deploy only if performance gains justify the additional complexity and governance requirements.
 3. **Explainability Tools**: Use SHAP or LIME for complex models to provide insights into decision-making.
