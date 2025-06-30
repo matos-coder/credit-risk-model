@@ -6,6 +6,7 @@
 # pipeline that transforms raw data into a model-ready format.
 # ==============================================================================
 
+import os
 import pandas as pd
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -181,9 +182,12 @@ if __name__ == '__main__':
     # This block runs only when the script is executed directly.
     print("Running feature engineering pipeline example...")
 
+# Get the absolute path to the project root
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    data_path = os.path.join(project_root, 'data', 'raw', 'data.csv')
     # Load the raw data
     try:
-        raw_df = pd.read_csv('../data/raw/data.csv')
+        raw_df = pd.read_csv(data_path)
     except FileNotFoundError:
         print("Error: The data file was not found. Please ensure 'data.csv' is in the '../data/raw/' directory.")
         exit()
