@@ -1,5 +1,5 @@
-# Your Project Name
-Add your project description here.
+# Project Name
+credit-risk-model
 
 # Credit Scoring Business Understanding
 
