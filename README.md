@@ -1,6 +1,82 @@
 # Project Name
 credit-risk-model
 
+# Project Overview
+
+This repository contains a credit risk modeling project for Bati Bank, focused on enabling a "Buy-Now-Pay-Later" service in partnership with an eCommerce company. The project includes:
+- A robust data processing pipeline for transforming raw data into model-ready features.
+- Exploratory Data Analysis (EDA) in a Jupyter Notebook to uncover patterns and guide feature engineering.
+- Scripts and documentation to support reproducible and interpretable credit scoring models.
+
+# Setup Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repo-url>
+   cd credit-risk-model
+   ```
+2. **Install Dependencies**
+   - Create a virtual environment (recommended):
+     ```bash
+     python -m venv venv
+     venv\Scripts\activate  # On Windows
+     # Or
+     source venv/bin/activate  # On Mac/Linux
+     ```
+   - Install required packages:
+     ```bash
+     pip install -r requirements.txt
+     ```
+3. **Project Structure**
+
+   credit-risk-model/
+├── .github/workflows/ci.yml   # For CI/CD
+├── data/                       # add this folder to .gitignore
+│   ├── raw/                   # Raw data goes here 
+│   └── processed/             # Processed data for training
+├── notebooks/
+│   └── 1.0-eda.ipynb          # Exploratory, one-off analysis
+├── src/
+│   ├── __init__.py
+│   ├── data_processing.py     # Script for feature engineering
+│   ├── train.py               # Script for model training
+│   ├── predict.py             # Script for inference
+│   └── api/
+│       ├── main.py            # FastAPI application
+│       └── pydantic_models.py # Pydantic models for API
+├── tests/
+│   └── test_data_processing.py # Unit tests
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+├── .gitignore
+└── README.md
+
+
+4. **Running the Data Processing Pipeline**
+   - From the project root, run:
+     ```bash
+     python src/data_processing.py
+     ```
+   - This will process the raw data and output model-ready features.
+
+5. **Exploratory Data Analysis**
+   - Open `notebooks/1.0-eda.ipynb` in Jupyter or VS Code to review the EDA process and insights.
+
+# Project Goals
+- Develop a transparent, interpretable, and regulatory-compliant credit scoring model.
+- Engineer features that capture customer behavior and risk.
+- Provide actionable insights through EDA and robust data pipelines.
+
+# Documentation
+- The README provides an overview, setup instructions, and a summary of the workflow.
+- See the `docs/` folder for additional details and references.
+
+# Contact
+For questions or contributions, please open an issue or submit a pull request.
+
+---
+
 # Credit Scoring Business Understanding
 
 ## Overview
@@ -172,3 +248,39 @@ The primary goal of this Exploratory Data Analysis (EDA) is to explore the datas
 
 5. **Insight:** Time-based patterns may exist within the TransactionStartTime.  
    **Hypothesis:** The time of day, day of the week, or month of the transaction could be a critical predictor of risk. We must engineer features from the TransactionStartTime column to capture these potential temporal patterns.
+
+## Task 3: Feature Engineering
+
+Build a robust, automated, and reproducible data processing script that transforms raw data into a model-ready format.
+
+All feature engineering logic must be implemented in the `src/` Python scripts. The main script uses `sklearn.pipeline.Pipeline` to chain together all transformation steps, ensuring modularity and reproducibility.
+
+### Key Steps in the Feature Engineering Pipeline
+
+1. **Create Aggregate Features**
+   - *Total Transaction Amount*: Sum of all transaction amounts for each customer.
+   - *Average Transaction Amount*: Average transaction amount per customer.
+   - *Transaction Count*: Number of transactions per customer.
+   - *Standard Deviation of Transaction Amounts*: Variability of transaction amounts per customer.
+
+2. **Extract Features from Timestamps**
+   - *Transaction Hour*: The hour of the day when the transaction occurred.
+   - *Transaction Day*: The day of the month when the transaction occurred.
+   - *Transaction Month*: The month when the transaction occurred.
+   - *Transaction Year*: The year when the transaction occurred.
+
+3. **Encode Categorical Variables**
+   - *One-Hot Encoding*: Converts categorical values into binary vectors.
+   - *Label Encoding*: Assigns a unique integer to each category (if needed).
+
+4. **Handle Missing Values**
+   - *Imputation*: Fill missing values with mean, median, mode, or advanced methods like KNN imputation.
+   - *Removal*: Remove rows or columns with missing values if they are few and not critical.
+
+5. **Normalize/Standardize Numerical Features**
+   - *Normalization*: Scales the data to a range of [0, 1].
+   - *Standardization*: Scales the data to have a mean of 0 and a standard deviation of 1.
+
+---
+
+The pipeline is designed to be flexible and can be easily extended or modified for different modeling requirements. All transformations are performed using scikit-learn compatible classes, ensuring seamless integration with downstream machine learning workflows.
