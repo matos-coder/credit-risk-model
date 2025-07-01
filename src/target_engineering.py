@@ -12,8 +12,6 @@ from sklearn.preprocessing import StandardScaler
 import warnings
 import os
 
-# Suppress warnings for cleaner output, particularly from K-Means on older scikit-learn versions.
-warnings.filterwarnings('ignore', category=FutureWarning)
 
 def create_target_variable(df: pd.DataFrame) -> pd.DataFrame:
     """
