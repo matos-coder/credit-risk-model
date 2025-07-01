@@ -1,0 +1,25 @@
+# ==============================================================================
+# 10 Academy - Credit Risk Modeling - Week 5
+# Task 6: docker-compose.yml
+#
+# This file makes it easy to run our Docker container with the correct settings.
+# ==============================================================================
+
+version: '3.8'
+
+services:
+  # Define our API service
+  api:
+    # Tell Compose to build the image from the Dockerfile in the current directory
+    build: .
+    # Give the container a friendly name
+    container_name: credit_risk_api
+    # Map port 8000 on our local machine to port 8000 inside the container
+    ports:
+      - "8000:8000"
+    # Mount volumes to sync local files with container files.
+    # This is useful for development. Any changes in your local 'src' or 'mlruns'
+    # will be reflected inside the container without rebuilding.
+    volumes:
+      - ./src:/app/src
+      - ./mlruns:/app/mlruns
