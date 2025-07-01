@@ -1,0 +1,18 @@
+aliases: []
+creation_timestamp: 1751360543241
+current_stage: None
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1751360543241
+metrics: null
+model_id: m-293bf733c78043e99155e2daffb04e97
+name: CreditRiskChampionModel
+params: null
+run_id: 97b29be1d2e84195983f87dfccf7dd5d
+run_link: null
+source: models:/m-293bf733c78043e99155e2daffb04e97
+status: READY
+status_message: null
+storage_location: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/models/m-293bf733c78043e99155e2daffb04e97/artifacts
+user_id: null
+version: 1

@@ -1,0 +1,22 @@
+artifact_path: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/models/m-293bf733c78043e99155e2daffb04e97/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.1
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.0
+mlflow_version: 3.1.1
+model_id: m-293bf733c78043e99155e2daffb04e97
+model_size_bytes: 138988
+model_uuid: m-293bf733c78043e99155e2daffb04e97
+prompts: null
+run_id: 97b29be1d2e84195983f87dfccf7dd5d
+utc_time_created: '2025-07-01 09:02:17.745419'

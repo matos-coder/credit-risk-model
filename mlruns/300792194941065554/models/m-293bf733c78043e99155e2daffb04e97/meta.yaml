@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/models/m-293bf733c78043e99155e2daffb04e97/artifacts
+creation_timestamp: 1751360537655
+experiment_id: '300792194941065554'
+last_updated_timestamp: 1751360543062
+model_id: m-293bf733c78043e99155e2daffb04e97
+model_type: null
+name: GradientBoosting
+source_run_id: 97b29be1d2e84195983f87dfccf7dd5d
+status: 2
+status_message: null

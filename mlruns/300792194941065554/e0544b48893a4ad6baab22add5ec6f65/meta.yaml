@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/e0544b48893a4ad6baab22add5ec6f65/artifacts
+end_time: 1751360513301
+entry_point_name: ''
+experiment_id: '300792194941065554'
+lifecycle_stage: active
+run_id: e0544b48893a4ad6baab22add5ec6f65
+run_name: clean-doe-593
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751360498928
+status: 3
+tags: []
+user_id: hp
