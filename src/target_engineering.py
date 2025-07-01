@@ -137,7 +137,7 @@ if __name__ == '__main__':
     # Get the absolute path to the project root
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_path = os.path.join(project_root, 'data', 'raw', 'data.csv')
-    
+
     # Load the raw data
     try:
         raw_df = pd.read_csv(data_path)
