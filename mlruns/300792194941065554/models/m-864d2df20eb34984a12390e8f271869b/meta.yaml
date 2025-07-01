@@ -1,0 +1,10 @@
+artifact_location: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/models/m-864d2df20eb34984a12390e8f271869b/artifacts
+creation_timestamp: 1751379397561
+experiment_id: '300792194941065554'
+last_updated_timestamp: 1751379403898
+model_id: m-864d2df20eb34984a12390e8f271869b
+model_type: null
+name: LogisticRegression
+source_run_id: 8742e0c430cb4110b06d13c4801d061a
+status: 2
+status_message: null
