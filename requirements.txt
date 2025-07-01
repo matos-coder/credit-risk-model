@@ -7,3 +7,9 @@ numpy
 
 mlflow
 pytest
+
+fastapi
+uvicorn[standard]
+python-multipart
+flake8
+pydantic
