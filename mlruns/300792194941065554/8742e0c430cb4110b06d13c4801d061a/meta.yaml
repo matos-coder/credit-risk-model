@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/8742e0c430cb4110b06d13c4801d061a/artifacts
+end_time: 1751379403929
+entry_point_name: ''
+experiment_id: '300792194941065554'
+lifecycle_stage: active
+run_id: 8742e0c430cb4110b06d13c4801d061a
+run_name: classy-loon-518
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751379396246
+status: 3
+tags: []
+user_id: hp

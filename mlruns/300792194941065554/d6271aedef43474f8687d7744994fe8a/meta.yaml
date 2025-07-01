@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/d6271aedef43474f8687d7744994fe8a/artifacts
+end_time: 1751379335020
+entry_point_name: ''
+experiment_id: '300792194941065554'
+lifecycle_stage: active
+run_id: d6271aedef43474f8687d7744994fe8a
+run_name: rare-gull-809
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751379327149
+status: 3
+tags: []
+user_id: hp

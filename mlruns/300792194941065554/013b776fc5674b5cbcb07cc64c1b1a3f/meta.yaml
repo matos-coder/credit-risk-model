@@ -1,0 +1,14 @@
+artifact_uri: file:C:/Users/hp/Desktop/matos/tenx 10academy/week 5/credit-risk-model/mlruns/300792194941065554/013b776fc5674b5cbcb07cc64c1b1a3f/artifacts
+end_time: 1751379261386
+entry_point_name: ''
+experiment_id: '300792194941065554'
+lifecycle_stage: active
+run_id: 013b776fc5674b5cbcb07cc64c1b1a3f
+run_name: mysterious-quail-41
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751379232073
+status: 3
+tags: []
+user_id: hp

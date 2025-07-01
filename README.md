@@ -284,3 +284,127 @@ All feature engineering logic must be implemented in the `src/` Python scripts. 
 ---
 
 The pipeline is designed to be flexible and can be easily extended or modified for different modeling requirements. All transformations are performed using scikit-learn compatible classes, ensuring seamless integration with downstream machine learning workflows.
+
+## Task 4: Proxy Target Variable Engineering
+
+The dataset does not contain a pre-existing "credit risk" or default label. This task focuses on programmatically creating a proxy target variable to identify high-risk customers, using customer engagement metrics and unsupervised learning.
+
+### Key Steps
+
+1. **Calculate RFM Metrics**
+   - For each `CustomerId`, compute:
+     - **Recency**: Days since the customer’s most recent transaction (relative to a fixed snapshot date).
+     - **Frequency**: Total number of transactions.
+     - **Monetary Value**: Total transaction amount.
+   - Implemented in `src/target_engineering.py`.
+
+2. **Cluster Customers**
+   - Apply K-Means clustering to the RFM features to segment customers into three groups (low, medium, high engagement).
+   - Features are standardized before clustering for meaningful groupings.
+   - Clustering is reproducible by setting a `random_state`.
+
+3. **Define and Assign the "High-Risk" Label**
+   - Analyze clusters to identify the segment with high recency, low frequency, and low monetary value.
+   - Customers in this cluster are labeled as high risk (`is_high_risk = 1`), all others as low risk (`is_high_risk = 0`).
+
+4. **Integrate the Target Variable**
+   - Merge the new `is_high_risk` column back into the main dataset for use in model training.
+
+---
+
+## Task 5: Model Training and Tracking
+
+This task develops a robust, reproducible model training pipeline that supports experimentation, model versioning, and automated evaluation, leveraging MLflow for experiment tracking and pytest for unit testing.
+
+### Key Steps
+
+1. **Model Selection and Training**
+   - Data is split into training and testing sets, stratified by the target variable.
+   - At least two models are trained and compared (e.g., Logistic Regression and Gradient Boosting Classifier).
+   - The feature engineering pipeline is applied to both training and test data.
+   - Implemented in `src/train.py`.
+
+2. **Hyperparameter Tuning**
+   - The script is structured for easy extension to hyperparameter tuning (e.g., Grid Search or Random Search).
+
+3. **Model Evaluation**
+   - Models are evaluated using multiple metrics: Accuracy, Precision, Recall, F1 Score, ROC-AUC.
+   - Results are printed and logged for each model.
+
+4. **Experiment Tracking with MLflow**
+   - MLflow tracks all experiments locally in the `mlruns` directory.
+   - For each model, parameters, metrics, and the trained model artifact are logged.
+   - The best model is registered in the MLflow Model Registry for deployment.
+
+5. **Unit Testing**
+   - Unit tests for feature engineering components are implemented in `tests/test_data_processing.py` using pytest.
+   - Tests cover both the `AggregateFeatureCreator` and `TimeFeatureExtractor`.
+
+---
+
+## Task 6: Model Deployment and Continuous Integration
+
+This task deploys the trained model as a REST API using FastAPI, containerizes the service with Docker, and sets up a CI/CD pipeline for automated testing and code quality assurance.
+
+### Key Steps
+
+1. **API Development with FastAPI**
+   - The REST API is implemented in `src/api/main.py` using FastAPI.
+   - The API loads the best model from the MLflow Model Registry at startup.
+   - A `/predict` endpoint accepts new customer data (validated with Pydantic models from `src/api/pydantic_models.py`) and returns the risk probability and risk flag.
+
+2. **Containerization with Docker**
+   - The application is containerized using a `Dockerfile` that sets up the environment and runs the FastAPI app with Uvicorn.
+   - A `docker-compose.yml` file is provided for easy local development and deployment.
+
+3. **Continuous Integration (CI) with GitHub Actions**
+   - A CI workflow is defined in `.github/workflows/ci.yml`.
+   - The workflow is triggered on every push or pull request to the `main` branch.
+   - Steps include:
+     - **Linting**: Runs flake8 to check for code style issues.
+     - **Testing**: Runs pytest to execute all unit tests.
+   - The build fails if either linting or tests fail.
+
+---
+
+## How to Run the Scripts
+
+1. **Run Data Processing**
+   ```bash
+   python src/data_processing.py
+   ```
+   This processes the raw data and outputs model-ready features.
+
+2. **Run Target Engineering**
+   ```bash
+   python src/target_engineering.py
+   ```
+   This creates and integrates the `is_high_risk` target variable.
+
+3. **Run Model Training and Tracking**
+   ```bash
+   python src/train.py
+   ```
+   This trains models, evaluates them, and tracks experiments with MLflow.
+
+4. **Run Unit Tests**
+   ```bash
+   pytest
+   ```
+   This runs all unit tests in the `tests/` directory.
+
+5. **Run the API (Locally)**
+   ```bash
+   uvicorn src.api.main:app --reload
+   ```
+   This starts the FastAPI server for local testing.
+
+6. **Run with Docker Compose**
+   ```bash
+   docker-compose up --build
+   ```
+   This builds and runs the API and all dependencies in containers.
+
+---
+
+The pipeline is fully automated, modular, and reproducible, supporting best practices in MLOps and credit risk modeling. All components are integrated and can be run independently or as part of the end-to-end workflow.
