@@ -21,14 +21,14 @@ app = FastAPI(
 # This is a critical step. We load the model registered as the "champion" in Task 5.
 # This ensures we are always using the best-performing, production-ready model.
 MODEL_NAME = "CreditRiskChampionModel"
-MODEL_STAGE = "Production" # Or "Staging", depending on your MLflow setup
+MODEL_STAGE = "@production" # Or "Staging", depending on your MLflow setup
 
 try:
     # Set the tracking URI to find the mlruns folder
     mlflow.set_tracking_uri("file:./mlruns")
     # Load the model
-    model = mlflow.pyfunc.load_model(model_uri=f"models:/{MODEL_NAME}/{MODEL_STAGE}")
-    print(f"Successfully loaded model '{MODEL_NAME}' version {model.metadata.version} from stage '{MODEL_STAGE}'.")
+    model = mlflow.pyfunc.load_model(model_uri=f"models:/{MODEL_NAME}{MODEL_STAGE}")
+    print(f"Successfully loaded model '{MODEL_NAME}' from stage '{MODEL_STAGE}'.")
 except mlflow.exceptions.MlflowException as e:
     model = None
     print(f"Error loading model: {e}")
